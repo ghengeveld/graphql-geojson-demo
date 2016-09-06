@@ -1,0 +1,16 @@
+{
+  "env": {
+    "mocha": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": [2, "always-multiline"],
+    "max-len": [2, 120],
+    "no-use-before-define": [2, { "functions": false }],
+    "semi": [2, "never"]
+  }
+}
