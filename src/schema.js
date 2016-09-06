@@ -17,9 +17,27 @@ const CounterType = new GraphQLObjectType({
   }),
 })
 
+const IncrementType = new GraphQLObjectType({
+  name: 'Increment',
+  fields: () => ({
+    count: {
+      type: GraphQLInt,
+      description: 'The new counter value',
+    },
+  }),
+})
+
 const counterQuery = {
   type: CounterType,
   resolve: () => ({ count }),
+}
+
+const incrementMutation = {
+  type: IncrementType,
+  resolve: () => {
+    count += 1
+    return { count }
+  },
 }
 
 export default new GraphQLSchema({
@@ -27,6 +45,12 @@ export default new GraphQLSchema({
     name: 'Query',
     fields: () => ({
       counter: counterQuery,
+    }),
+  }),
+  mutation: new GraphQLObjectType({
+    name: 'Mutation',
+    fields: () => ({
+      increment: incrementMutation,
     }),
   }),
 })
