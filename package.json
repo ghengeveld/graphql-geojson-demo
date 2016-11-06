@@ -1,5 +1,5 @@
 {
-  "name": "basic-graphql-server",
+  "name": "graphql-geojson-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,6 +14,7 @@
     "express": "^4.14.0",
     "express-graphql": "^0.5.4",
     "graphql": "^0.6.2",
+    "graphql-geojson": "github:ghengeveld/graphql-geojson",
     "nodemon": "^1.10.2",
     "source-map-support": "^0.4.2"
   },

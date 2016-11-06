@@ -1,56 +1,70 @@
 import {
-  GraphQLInt,
   GraphQLObjectType,
   GraphQLSchema,
 } from 'graphql'
-
-let count = 0
-
-const CounterType = new GraphQLObjectType({
-  name: 'Counter',
-  description: 'A simple counter',
-  fields: () => ({
-    count: {
-      type: GraphQLInt,
-      description: 'The current counter value',
-    },
-  }),
-})
-
-const IncrementType = new GraphQLObjectType({
-  name: 'Increment',
-  fields: () => ({
-    count: {
-      type: GraphQLInt,
-      description: 'The new counter value',
-    },
-  }),
-})
-
-const counterQuery = {
-  type: CounterType,
-  resolve: () => ({ count }),
-}
-
-const incrementMutation = {
-  type: IncrementType,
-  resolve: () => {
-    count += 1
-    return { count }
-  },
-}
+import {
+  PointObject,
+  MultiPointObject,
+  LineStringObject,
+  MultiLineStringObject,
+  PolygonObject,
+  MultiPolygonObject,
+  GeometryCollectionObject,
+  FeatureObject,
+  FeatureCollectionObject,
+} from 'graphql-geojson'
+import {
+  point,
+  multiPoint,
+  lineString,
+  multiLineString,
+  polygon,
+  multiPolygon,
+  feature,
+  featureCollection,
+  geometryCollection,
+} from './data.json'
 
 export default new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
-      counter: counterQuery,
-    }),
-  }),
-  mutation: new GraphQLObjectType({
-    name: 'Mutation',
-    fields: () => ({
-      increment: incrementMutation,
+      point: {
+        type: PointObject,
+        resolve: () => point,
+      },
+      multiPoint: {
+        type: MultiPointObject,
+        resolve: () => multiPoint,
+      },
+      lineString: {
+        type: LineStringObject,
+        resolve: () => lineString,
+      },
+      multiLineString: {
+        type: MultiLineStringObject,
+        resolve: () => multiLineString,
+      },
+      polygon: {
+        type: PolygonObject,
+        resolve: () => polygon,
+      },
+      multiPolygon: {
+        type: MultiPolygonObject,
+        resolve: () => multiPolygon,
+      },
+      feature: {
+        type: FeatureObject,
+        resolve: () => feature,
+      },
+      featureCollection: {
+        type: FeatureCollectionObject,
+        resolve: () => featureCollection,
+      },
+      geometryCollection: {
+        type: GeometryCollectionObject,
+        resolve: () => geometryCollection,
+      },
     }),
   }),
 })
